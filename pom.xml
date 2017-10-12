@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>processpuzzle-compose</artifactId>
+  <name>ProcessPuzzle Compose</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>com.processpuzzle</groupId>
+    <artifactId>processpuzzle-parent</artifactId>
+    <version>0.0.12</version>
+  </parent>
+
+  <properties>
+    <project.scm.id>github</project.scm.id>
+  </properties>
+
+  <scm>
+    <url>https://github.com/ZsZs/processpuzzle-compose</url>
+    <connection>scm:git:https://github.com/ZsZs/processpuzzle-compose.git</connection>
+    <developerConnection>scm:git:https://github.com/ZsZs/processpuzzle-compose.git</developerConnection>
+    <tag>processpuzzle-compose-0.0.1</tag>
+  </scm>
+
+</project>
