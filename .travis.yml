@@ -11,19 +11,26 @@ env:
     maven:
     - repository=$HOME/.m2
 before_install: 
+
 cache:
   directories:
   - "$HOME/.m2"
 before_script: 
+
 script:
 - mvn clean install
+
 deploy:
-  provider: elasticbeanstalk
+- provider: elasticbeanstalk
   access_key_id: AKIAJGCDIH623MFPRVEQ
   secret_access_key:
     secure: mVdkcaT16YbeCjVdgiGSk0l5RFPDvDxWLBgGcVORA4SYmKCeJ0qmt5Tj272Gujwijk3HNiiDyEGjmz9taTrmP441deetOV3qwdXk6sPu79kP94qekxcNIODITs+/HG218TW6Xu5zIbRTk7uK6W+sJf6FXgywbhIvRNZdHL1q82Q82R0uoii90kaG4aN4dI8yBCgAFuIJywfhvZoHsBU69522r/W9obDTdsN3bxwKfb2YEppC2r6Hyy06+j9sYD1MWbyD7403DDBbcomx2Wn0u038BmtP9OAbFYg1hJiw9x3YZobRW/G3YoBZ5QRs6bb1Z8TCc64La2dQZXg9N7Nl30khv9/k8qtHfrSuevzPELHpJB9dVfvSA+q84nB7UYIWBkSFXQV8uBfQVghKJ30Lrq+94Epp/EyTsKmj7beJ6Xf7UxMh1rr774HH54RqNJ31rbd9iQyfXx+T1xC1Q2//YS8JZ+NkIghhq7cwhx5sIza/HG0a+eTLGvGveYypcxIMmSSUCTHNIP2PTeXtNHg4qTclW0ArzOWvXDMej9FWa/KrZXgaWHzGxf04w0XE9xVGoimCY8u2jeU0zMtzzHOSyXD4LodLAaxtdtdua6UUD3MHXUrbrggq1tiQ2t8Yuce+weODgU8zidSY4XUQWTCadA4lmkbF3GfbctZFXugrsoE=
   region: eu-central-1
   app: ProcessPuzzle
   env: processpuzzle-integ-env
+  bucket_name: processpuzzle-compose
+  zip_file: "./target/processpuzzle-compose.zip"
+  upload-dir: processpuzzle-cms-aws
+  skip_cleanup: true
   on:
     repo: ZsZs/processpuzzle-compose
