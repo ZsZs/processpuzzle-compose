@@ -1,0 +1,30 @@
+version: '3'
+
+networks:
+  prodnetwork:
+    driver: bridge
+
+services:
+  proxy:
+    image: zsuffazs/processpuzzle-proxy
+    container_name: processpuzzle-proxy
+    restart: always
+    ports:
+      - "8000:80"
+    networks:
+      - prodnetwork
+    depends_on:
+      - processpuzzle-core
+
+  processpuzzle-core:
+    image: zsuffazs/processpuzzle-core
+    container_name: processpuzzle-core
+    restart: always
+    ports:
+      - "9125:9125"
+    environment:
+      - VIRTUAL_HOST=processpuzzle-core.local
+    networks:
+      - prodnetwork
+
+      

@@ -1,0 +1,51 @@
+sudo: required
+language: java
+jdk: oraclejdk8
+node_js:
+- 8.5.0
+services:
+- docker
+install: true
+env:
+  local:
+    maven:
+    - repository=$HOME/.m2
+before_install:
+
+cache:
+  directories:
+  - "$HOME/.m2"
+before_script: 
+
+script:
+- mvn clean install
+
+deploy:
+- provider: elasticbeanstalk
+  access_key_id: AKIAJGCDIH623MFPRVEQ
+  secret_access_key:
+    secure: oX+pp2+eLGk+oLlpBel+4hiJZd7gmPNfFepUBAHajfZTGL6Y/l1g6f4Un5rh+Y22OPiOVhdtAk4xsgzgfzmp4Vfzg6rgdt5TeJWoJ4c2oqXkR5xcDsMJ2Dm5UeHOy+MMKNDaXYuhkvDabpXzEYo/GZc+Lz2xWIkPIHByGOUJG1xNQAZ1Dl63N7Eai/N3e0N0A+VvMi/5V5ELeErO4gDXlSKeuTxaQmU+qkN9MzTN60e8cXByiSZoUoQFAVujqejukzCMPyy3AOHzDqQ3Dgs8xCM9eAjiPYeII7BwsPXDqExjZdKua8T6oBf1aRlHwY2udBcoSyWQidXT4bN6btxxBOmVTepmuDbw7QMF9ysokpBD0oME/7Ef7Eok5oEvfRSMlssCccLZ/rlQMiNmygtGn9pmoim3O9bnzA1q4ceDsO/vzl98bHvRvZ+xH1TwDH8czHwl1x4PQHPdT54ZOy0z2jpsEbhunqqU0UNcWXCYtZIPDdgl9UjW5y39mrtWHdDXs2Fel35BR2zG+qqy7gsIwE539dcteIGkrqQNvNg2Dy1v7Lcw9wfyNkaFedpP+bEWSp7ajLHmW6ndyp/POUhfktpsPdii7XdbHVkkgPHbJsfpj2zTCJRIOr4JxCQA5TLFmo8NR91xS5veUYu1bg0v3LSD5z8cEpJ97xJ5ymaNfIE=
+  region: eu-central-1
+  app: ProcessPuzzle
+  env: integ-env
+  bucket_name: processpuzzle
+  zip_file: "./target/processpuzzle-compose.zip"
+  upload-dir: processpuzzle-aws
+  skip_cleanup: true
+  on:
+    branch: development
+    
+- provider: elasticbeanstalk
+  access_key_id: AKIAJGCDIH623MFPRVEQ
+  secret_access_key:
+    secure: oX+pp2+eLGk+oLlpBel+4hiJZd7gmPNfFepUBAHajfZTGL6Y/l1g6f4Un5rh+Y22OPiOVhdtAk4xsgzgfzmp4Vfzg6rgdt5TeJWoJ4c2oqXkR5xcDsMJ2Dm5UeHOy+MMKNDaXYuhkvDabpXzEYo/GZc+Lz2xWIkPIHByGOUJG1xNQAZ1Dl63N7Eai/N3e0N0A+VvMi/5V5ELeErO4gDXlSKeuTxaQmU+qkN9MzTN60e8cXByiSZoUoQFAVujqejukzCMPyy3AOHzDqQ3Dgs8xCM9eAjiPYeII7BwsPXDqExjZdKua8T6oBf1aRlHwY2udBcoSyWQidXT4bN6btxxBOmVTepmuDbw7QMF9ysokpBD0oME/7Ef7Eok5oEvfRSMlssCccLZ/rlQMiNmygtGn9pmoim3O9bnzA1q4ceDsO/vzl98bHvRvZ+xH1TwDH8czHwl1x4PQHPdT54ZOy0z2jpsEbhunqqU0UNcWXCYtZIPDdgl9UjW5y39mrtWHdDXs2Fel35BR2zG+qqy7gsIwE539dcteIGkrqQNvNg2Dy1v7Lcw9wfyNkaFedpP+bEWSp7ajLHmW6ndyp/POUhfktpsPdii7XdbHVkkgPHbJsfpj2zTCJRIOr4JxCQA5TLFmo8NR91xS5veUYu1bg0v3LSD5z8cEpJ97xJ5ymaNfIE=
+  region: eu-central-1
+  app: ProcessPuzzle
+  env: prod-env
+  bucket_name: processpuzzle
+  zip_file: "./target/processpuzzle-compose.zip"
+  upload-dir: processpuzzle-aws
+  skip_cleanup: true
+  on:
+    branch: master  
+    tags: true
