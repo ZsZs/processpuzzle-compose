@@ -12,6 +12,7 @@
       <outputDirectory>${file.separator}</outputDirectory>
       <includes>
         <include>Dockerrun.aws.json</include>
+        <include>placeholder.jpg</include>
       </includes>
     </fileSet>
   </fileSets>

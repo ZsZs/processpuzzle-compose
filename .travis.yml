@@ -21,6 +21,12 @@ script:
 - mvn clean install
 
 deploy:
+- provider: script
+  skip_cleanup: true
+  script: mvn deploy -Dmaven.test.skip=true --settings travis-maven-settings.xml -B
+  on:
+    branch: master
+
 - provider: elasticbeanstalk
   access_key_id: AKIAJGCDIH623MFPRVEQ
   secret_access_key:

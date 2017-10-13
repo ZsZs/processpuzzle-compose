@@ -1,51 +1,20 @@
 {
    "AWSEBDockerrunVersion": 2,
    
-   "volumes": [
-    {
-      "name": "nginx-proxy-static",
-      "host": {
-        "sourcePath": "/var/app/current/proxy/html"
-      }
-    },
-    {
-      "name": "nginx-proxy-conf",
-      "host": {
-        "sourcePath": "/var/app/current/proxy/conf.d"
-      }
-    }],
-    
    "containerDefinitions": [
    {
       "name": "processpuzzle-proxy",
       "image": "zsuffazs/processpuzzle-proxy",
       "essential": true,
       "memory": 128,
-      "portMappings": [
-        {
+      "portMappings": [{
           "hostPort": 80,
           "containerPort": 80
-        }
-      ],
+        }],
       "links": [
         "processpuzzle-core"
       ],
-      "mountPoints": [
-        {
-          "sourceVolume": "awseb-logs-nginx-proxy",
-          "containerPath": "/var/log/nginx"
-        },
-        {
-          "sourceVolume": "nginx-proxy-static",
-          "containerPath": "/usr/share/nginx/html",
-          "readOnly": true
-        },
-        {
-          "sourceVolume": "nginx-proxy-conf",
-          "containerPath": "/etc/nginx/conf.d",
-          "readOnly": true
-        }
-      ]
+      "mountPoints": []
     },
    
    {
@@ -56,6 +25,7 @@
       "portMappings": [{
         "hostPort": 9125,
         "containerPort": 9125
-      }]
+      }],
+      "mountPoints": []
     }]
 }
