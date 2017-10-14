@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>processpuzzle-compose</artifactId>
   <name>ProcessPuzzle Compose</name>
-  <version>0.0.2</version>
+  <version>0.0.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <parent>
@@ -19,7 +19,7 @@
     <url>https://github.com/ZsZs/processpuzzle-compose</url>
     <connection>scm:git:https://github.com/ZsZs/processpuzzle-compose.git</connection>
     <developerConnection>scm:git:https://github.com/ZsZs/processpuzzle-compose.git</developerConnection>
-    <tag>processpuzzle-compose-0.0.2</tag>
+    <tag>processpuzzle-compose-0.0.1</tag>
   </scm>
 
   <build>
