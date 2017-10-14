@@ -6,6 +6,7 @@ networks:
 
 services:
   proxy:
+    build: ./proxy
     image: zsuffazs/processpuzzle-proxy
     container_name: processpuzzle-proxy
     restart: always

@@ -1,5 +1,19 @@
 {
    "AWSEBDockerrunVersion": 2,
+
+   "volumes": [
+    {
+      "name": "nginx-proxy-static",
+      "host": {
+        "sourcePath": "/var/app/current/proxy/html"
+      }
+    },
+    {
+      "name": "nginx-proxy-conf",
+      "host": {
+        "sourcePath": "/var/app/current/proxy/conf"
+      }
+    }],
    
    "containerDefinitions": [
    {
@@ -14,7 +28,22 @@
       "links": [
         "processpuzzle-core"
       ],
-      "mountPoints": []
+      "mountPoints": [
+        {
+          "sourceVolume": "awseb-logs-nginx-proxy",
+          "containerPath": "/var/log/nginx"
+        },
+        {
+          "sourceVolume": "nginx-proxy-static",
+          "containerPath": "/usr/share/nginx/html",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "nginx-proxy-conf",
+          "containerPath": "/etc/nginx",
+          "readOnly": true
+        }
+      ]
     },
    
    {
