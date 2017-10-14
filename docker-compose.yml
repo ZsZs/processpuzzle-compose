@@ -30,8 +30,8 @@ services:
     ports:
       - "9125:9125"
     environment:
-      - SPRING_PROFILES_ACTIVE=local
-      - VIRTUAL_HOST=processpuzzle-core.local
+      - SPRING_PROFILES_ACTIVE: local
+      - VIRTUAL_HOST: processpuzzle-core.local
     volumes:
       - processpuzzle-logs:/var/log/processpuzzle-core
     networks:
