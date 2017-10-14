@@ -55,6 +55,17 @@
         "hostPort": 9125,
         "containerPort": 9125
       }],
-      "mountPoints": []
+      "environment": [
+        {
+          "name": "SPRING_PROFILES_ACTIVE",
+          "value": "local"
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "awseb-logs-processpuzzle-core",
+          "containerPath": "/var/log/processpuzzle-core"
+        }
+      ]
     }]
 }

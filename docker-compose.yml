@@ -4,6 +4,10 @@ networks:
   prodnetwork:
     driver: bridge
 
+volumes:
+  processpuzzle-logs:
+    external: true
+
 services:
   proxy:
     build: ./proxy
@@ -12,6 +16,8 @@ services:
     restart: always
     ports:
       - "8000:80"
+    volumes:
+      - processpuzzle-logs:/var/log/nginx
     networks:
       - prodnetwork
     depends_on:
@@ -24,8 +30,11 @@ services:
     ports:
       - "9125:9125"
     environment:
+      - SPRING_PROFILES_ACTIVE=local
       - VIRTUAL_HOST=processpuzzle-core.local
+    volumes:
+      - processpuzzle-logs:/var/log/processpuzzle-core
     networks:
       - prodnetwork
-
-      
+    logging:
+      driver: json-file
